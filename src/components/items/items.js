@@ -26,7 +26,7 @@ const productsArr = [
     ]
 
 const Items = () => {
-  const { cartDispatch } = useCart();
+    const { cartState, cartDispatch } = useCart();
 
   const addToCart = (product) => {
     cartDispatch({ type: 'ADD_TO_CART', payload: product });

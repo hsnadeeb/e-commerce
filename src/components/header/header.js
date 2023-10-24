@@ -1,11 +1,8 @@
-// Header.js
 import React from 'react';
 import { Navbar, Nav, Badge } from 'react-bootstrap';
-import { useCart } from '../context/cartcontext';
+import Cart from '../cart/cart';
 
 const Header = () => {
-  const { cartState } = useCart();
-
   return (
     <Navbar bg="light" expand="lg">
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
@@ -15,9 +12,7 @@ const Header = () => {
           <Nav.Link href="/store">Store</Nav.Link>
           <Nav.Link href="/about">About</Nav.Link>
         </Nav>
-        <Nav.Link href="/cart">
-          Cart <Badge variant="secondary">{cartState.cart.length}</Badge>
-        </Nav.Link>
+        <Cart />
       </Navbar.Collapse>
     </Navbar>
   );
