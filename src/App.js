@@ -8,21 +8,16 @@ import Footer from './components/footer/footer';
 import { CartProvider } from './components/context/cartcontext';
 const App = () => {
 
-  const [isCartOpen, setIsCartOpen] = useState(false);
 
-  const toggleCart = () => {
-    setIsCartOpen(!isCartOpen);
-  };
   return (
     <CartProvider>
     <div>
-      <Header toggleCart={toggleCart} />
+      <Header />
       <Container>
         <Hero />
         <Items />
       </Container>
       <Footer />
-      {isCartOpen && <Cart toggleCart={toggleCart} />}
     </div>
   </CartProvider>
   );
