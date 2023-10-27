@@ -6,20 +6,25 @@ import Hero from './components/hero/hero';
 import Items from './components/items/items';
 import Footer from './components/footer/footer';
 import { CartProvider } from './components/context/cartcontext';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'; // Import BrowserRouter, Routes, and Route
+
+import About from './components/pages/About';
+
 const App = () => {
-
-
   return (
     <CartProvider>
-    <div>
-      <Header />
-      <Container>
+      <Router>
+        <Header />
         <Hero />
-        <Items />
-      </Container>
-      <Footer />
-    </div>
-  </CartProvider>
+        <Container>
+          <Routes> {/* Use Routes to define your routes */}
+            <Route path="/store" element={<Items />} />
+            <Route path="/about" element={<About />} /> {/* Define the About route */}
+          </Routes>
+        </Container>
+        <Footer />
+      </Router>
+    </CartProvider>
   );
 };
 
