@@ -9,6 +9,7 @@ import { CartProvider } from './components/context/cartcontext';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'; // Import BrowserRouter, Routes, and Route
 
 import About from './components/pages/About';
+import Home from './components/pages/Home';
 
 const App = () => {
   return (
@@ -17,9 +18,10 @@ const App = () => {
         <Header />
         <Hero />
         <Container>
-          <Routes> {/* Use Routes to define your routes */}
+          <Routes> 
             <Route path="/store" element={<Items />} />
-            <Route path="/about" element={<About />} /> {/* Define the About route */}
+            <Route path="/about" element={<About />} />
+            <Route path="/home" element={<Home />} /> 
           </Routes>
         </Container>
         <Footer />
