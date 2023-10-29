@@ -21,6 +21,7 @@ const Header = () => {
             <Nav.Link as={Link} to="/home">Home</Nav.Link>
             <Nav.Link as={Link} to="/store">Store</Nav.Link>
             <Nav.Link as={Link} to="/about">About Us</Nav.Link>
+            <Nav.Link as={Link} to="/contact">Contact Us</Nav.Link>
           </Nav>
         </Navbar.Collapse>
         <Button variant="secondary" onClick={toggleCart}>

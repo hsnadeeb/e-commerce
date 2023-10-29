@@ -9,7 +9,7 @@ const Cart = ({ onCloseCart }) => {
     <div className="cart-modal">
       <Container className="d-flex justify-content-center">
         <div className="cart">
-          <Button variant="secondary" onClick={onCloseCart}>
+          <Button variant="secondary justify-content-center" onClick={onCloseCart}>
             Close
           </Button>
           <h2>Your Cart</h2>
