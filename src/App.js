@@ -12,6 +12,7 @@ import About from './components/pages/About';
 import Home from './components/pages/Home';
 import Contact from './components/pages/Contact';
 import ProductDetails from './components/pages/ProductDetails';
+import Login from './components/pages/Login';
 
 const App = () => {
 
@@ -57,6 +58,7 @@ const App = () => {
             <Route path="/about" element={<About />} />
             <Route path="/home" element={<Home />} /> 
             <Route path="/contact" element={<Contact />} /> 
+            <Route path="/login" element={<Login />} /> 
             <Route path="/product/:productId" element={<ProductDetails productsArr={productsArr} />} />
           </Routes>
         </Container>
