@@ -6,7 +6,7 @@ const Login = () => {
   const navigate = useNavigate();
   const emailInputRef = useRef();
   const passwordInputRef = useRef();
-  const { cartState, cartDispatch } = useCart(); // Using useCart to access the cart context
+  const { cartState, cartDispatch } = useCart(); 
 
   const [isLoading, setIsLoading] = useState(false);
   const isLogin = true;
@@ -48,6 +48,7 @@ const Login = () => {
         .then((data) => {
           if (data) {
             const token = data.idToken;
+            localStorage.setItem('token', token);
             console.log('JWT (idToken):', token);
             cartDispatch({ type: 'LOGIN', payload: token }); // Use cartDispatch
             navigate('/store');
