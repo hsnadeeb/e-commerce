@@ -2,7 +2,7 @@ import React, { useState, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useCart } from '../context/cartcontext';
 
-const Login = () => {
+const Login = ({setIsLoggedIn}) => {
   const navigate = useNavigate();
   const emailInputRef = useRef();
   const passwordInputRef = useRef();
@@ -16,6 +16,7 @@ const Login = () => {
 
     const enteredEmail = emailInputRef.current.value;
     const enteredPassword = passwordInputRef.current.value;
+    const formattedEmail = enteredEmail.replace(/[@.]/g, ''); 
 
     setIsLoading(true);
 
@@ -50,7 +51,8 @@ const Login = () => {
             const token = data.idToken;
             localStorage.setItem('token', token);
             console.log('JWT (idToken):', token);
-            cartDispatch({ type: 'LOGIN', payload: token }); // Use cartDispatch
+            cartDispatch({ type: 'LOGIN', payload: token });
+            setIsLoggedIn(true); // Use cartDispatch
             navigate('/store');
           }
         });
