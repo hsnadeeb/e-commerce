@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Container } from 'react-bootstrap';
 import Header from './components/header/header';
@@ -6,7 +6,8 @@ import Hero from './components/hero/hero';
 import Items from './components/items/items';
 import Footer from './components/footer/footer';
 import { CartProvider } from './components/context/cartcontext';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'; // Import BrowserRouter, Routes, and Route
+
 import About from './components/pages/About';
 import Home from './components/pages/Home';
 import Contact from './components/pages/Contact';
@@ -14,7 +15,6 @@ import ProductDetails from './components/pages/ProductDetails';
 import Login from './components/pages/Login';
 
 const App = () => {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   const productsArr = [
     {
@@ -35,14 +35,14 @@ const App = () => {
       title: 'Yellow and Black Colors',
       price: 70,
       imageUrl:
-        'https://prasadyash2411.github.io/ecom-website/img/Album%3.png',
+        'https://prasadyash2411.github.io/ecom-website/img/Album%203.png',
       quantity: 1,
     },
     {
       title: 'Blue Color',
       price: 100,
       imageUrl:
-        'https://prasadyash2411.github.io/ecom-website/img/Album%4.png',
+        'https://prasadyash2411.github.io/ecom-website/img/Album%204.png',
       quantity: 1,
     },
   ];
@@ -53,17 +53,13 @@ const App = () => {
         <Header />
         <Hero />
         <Container>
-          <Routes>
-            
+          <Routes> 
+            <Route path="/store" element={<Items />} />
             <Route path="/about" element={<About />} />
-            <Route path="/home" element={<Home />} />
-            <Route path="/contact" element={<Contact />} />
-            {!isLoggedIn && <Route path="/login" element={< Login setIsLoggedIn={setIsLoggedIn} />} />}
-            {isLoggedIn && <Route path="/store" element={< Items/>} /> }
-            <Route
-              path="/product/:productId"
-              element={<ProductDetails productsArr={productsArr} />}
-            />
+            <Route path="/home" element={<Home />} /> 
+            <Route path="/contact" element={<Contact />} /> 
+            <Route path="/login" element={<Login />} /> 
+            <Route path="/product/:productId" element={<ProductDetails productsArr={productsArr} />} />
           </Routes>
         </Container>
         <Footer />
