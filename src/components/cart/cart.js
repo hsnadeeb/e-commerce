@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Button, Badge, Container, Row, Col } from 'react-bootstrap';
 import { useCart } from '../context/cartcontext';
 
 const Cart = ({ onCloseCart }) => {
-  const { cartState } = useCart();
+  // , isLoggedIn
+  const { cartState, isLoggedIn } = useCart();
 
   return (
     <div className="cart-modal">
@@ -13,18 +14,22 @@ const Cart = ({ onCloseCart }) => {
             Close
           </Button>
           <h2>Your Cart</h2>
-          <ul>
-            {cartState.cart.map((item, index) => (
-              <li key={index}>
-                <img src={item.imageUrl} alt={item.title} />
-                <div>
-                  <p>{item.title}</p>
-                  <p>Price: ${item.price}</p>
-                  <p>Quantity: {item.quantity}</p>
-                </div>
-              </li>
-            ))}
-          </ul>
+          {isLoggedIn ? (
+            <ul>
+              {cartState.cart.map((item, index) => (
+                <li key={index}>
+                  <img src={item.imageUrl} alt={item.title} />
+                  <div>
+                    <p>{item.title}</p>
+                    <p>Price: ${item.price}</p>
+                    <p>Quantity: {item.quantity}</p>
+                  </div>
+                </li>
+              ))}
+            </ul>
+          ) : (
+            <p>Please log in to see your cart items.</p>
+          )}
         </div>
       </Container>
     </div>
@@ -32,3 +37,4 @@ const Cart = ({ onCloseCart }) => {
 };
 
 export default Cart;
+

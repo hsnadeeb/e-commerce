@@ -8,16 +8,16 @@ const AutoLogin = () => {
   const { cartDispatch } = useCart();
 
   useEffect(() => {
-    const token = localStorage.getItem('token'); // Get the token from local storage
+    const token = localStorage.getItem('token'); 
 
     if (token) {
-      // If a token is found, automatically log the user in
+      
       cartDispatch({ type: 'LOGIN', payload: token });
       navigate('/store');
     }
   }, [cartDispatch, navigate]);
 
-  return null; // This component doesn't render anything, it's just for automatic login
+  return null; 
 };
 
 export default AutoLogin;

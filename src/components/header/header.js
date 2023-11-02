@@ -6,7 +6,7 @@ import { useCart } from '../context/cartcontext'; // Import useCart
 
 const Header = () => {
   const [isCartOpen, setIsCartOpen] = React.useState(false);
-  const { cartState } = useCart(); // Get the cartState from the context
+  const { cartState } = useCart();
 
   const toggleCart = () => {
     setIsCartOpen(!isCartOpen);

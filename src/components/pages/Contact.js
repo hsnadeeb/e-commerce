@@ -40,7 +40,7 @@ function Contact() {
         console.error("Error:", error);
       });
 
-    // Clear input fields
+
     nameRef.current.value = "";
     emailRef.current.value = "";
     phoneRef.current.value = "";

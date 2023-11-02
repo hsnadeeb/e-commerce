@@ -10,7 +10,7 @@ const ProductDetails = ({ productsArr }) => {
     return <div>Product not found.</div>;
   }
 
-  // Example reviews (you can replace this with your own data)
+  
   const reviews = [
     { id: 1, text: 'Great product! Loved it.' },
     { id: 2, text: 'The quality is amazing.' },

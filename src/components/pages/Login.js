@@ -2,7 +2,7 @@ import React, { useState, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useCart } from '../context/cartcontext';
 
-const Login = () => {
+const Login = (props) => {
   const navigate = useNavigate();
   const emailInputRef = useRef();
   const passwordInputRef = useRef();
@@ -16,7 +16,7 @@ const Login = () => {
 
     const enteredEmail = emailInputRef.current.value;
     const enteredPassword = passwordInputRef.current.value;
-
+    
     setIsLoading(true);
 
     if (isLogin) {
@@ -50,6 +50,7 @@ const Login = () => {
             const token = data.idToken;
             localStorage.setItem('token', token);
             console.log('JWT (idToken):', token);
+            props.setIsLoggedIn(true);
             cartDispatch({ type: 'LOGIN', payload: token }); // Use cartDispatch
             navigate('/store');
           }
