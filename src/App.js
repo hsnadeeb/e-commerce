@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState , useEffect} from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Container } from 'react-bootstrap';
 import Header from './components/header/header';
@@ -12,11 +12,17 @@ import Home from './components/pages/Home';
 import Contact from './components/pages/Contact';
 import ProductDetails from './components/pages/ProductDetails';
 import Login from './components/pages/Login';
-import AutoLogin from './components/pages/AutoLogin';
+
 
 const App = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  // let isLoggedIn=false;
+
+  useEffect(() => {
+    const token = localStorage.getItem('token');
+    if (token) {
+      setIsLoggedIn(true);
+    }
+  }, []);
 
   const productsArr = [
     {

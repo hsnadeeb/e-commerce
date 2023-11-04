@@ -32,7 +32,7 @@ const productsArr = [
 
 const Items = () => {
   const { cartState, cartDispatch } = useCart();
-
+  const cleanMail = 'hasantestcom';
   const addToCart = async (product) => {
     const existingCartItem = cartState.cart.find(
       (item) => item.title === product.title
@@ -44,14 +44,20 @@ const Items = () => {
         ...existingCartItem,
         quantity: existingCartItem.quantity + product.quantity,
       };
+      const id= updatedCartItem._id;
+      console.log(id)
 
     
       try {
-        const apiUrl = `https://crudcrud.com/api/f8774e76b3564be7b6831ef84f891086/newCart/${existingCartItem._id}`;
+        const apiUrl = `https://crudcrud.com/api/e616e777b9294108bdeea53d5f0fc506/testCart${cleanMail}/${id}`;
+
         const response = await fetch(apiUrl, {
           method: 'PUT',
           body: JSON.stringify({
+            imageUrl: updatedCartItem.imageUrl,
+            price: updatedCartItem.price,
             quantity: updatedCartItem.quantity,
+            title: updatedCartItem.title,
           }),
           headers: {
             'Content-Type': 'application/json',
@@ -60,6 +66,7 @@ const Items = () => {
 
         if (response.ok) {
           const data = await response.json();
+
           console.log('Quantity updated successfully:', data);
         } else {
           throw new Error('Failed to update quantity');
@@ -79,13 +86,14 @@ const Items = () => {
       cartDispatch({ type: 'ADD_TO_CART', payload: product });
 
   
-      const cleanMail = 'hasantestcom';
-      const apiUrl = `https://crudcrud.com/api/f8774e76b3564be7b6831ef84f891086/newCart${cleanMail}`;
+      
+      const apiUrl = `https://crudcrud.com/api/e616e777b9294108bdeea53d5f0fc506/testCart${cleanMail}`;
 
       try {
         const response = await fetch(apiUrl, {
           method: 'POST',
           body: JSON.stringify({
+            _id: product._id,
             imageUrl: product.imageUrl,
             price: product.price,
             quantity: product.quantity,

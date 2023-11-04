@@ -1,12 +1,13 @@
 import React, { useState, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useCart } from '../context/cartcontext';
+import { Form, Button, Spinner } from 'react-bootstrap';
 
 const Login = (props) => {
   const navigate = useNavigate();
   const emailInputRef = useRef();
   const passwordInputRef = useRef();
-  const { cartState, cartDispatch } = useCart(); 
+  const { cartState, cartDispatch } = useCart();
 
   const [isLoading, setIsLoading] = useState(false);
   const isLogin = true;
@@ -16,7 +17,7 @@ const Login = (props) => {
 
     const enteredEmail = emailInputRef.current.value;
     const enteredPassword = passwordInputRef.current.value;
-    
+
     setIsLoading(true);
 
     if (isLogin) {
@@ -51,7 +52,7 @@ const Login = (props) => {
             localStorage.setItem('token', token);
             console.log('JWT (idToken):', token);
             props.setIsLoggedIn(true);
-            cartDispatch({ type: 'LOGIN', payload: token }); // Use cartDispatch
+            cartDispatch({ type: 'LOGIN', payload: token });
             navigate('/store');
           }
         });
@@ -89,21 +90,25 @@ const Login = (props) => {
   return (
     <section>
       <h1>Login</h1>
-      <form onSubmit={submitHandler}>
-        <div>
-          <label htmlFor="email">Your Email</label>
-          <input type="email" id="email" ref={emailInputRef} required />
-        </div>
-        <div>
-          <label htmlFor="password">Your Password</label>
-          <input type="password" id="password" ref={passwordInputRef} required />
-        </div>
+      <Form onSubmit={submitHandler}>
+        <Form.Group>
+          <Form.Label>Your Email</Form.Label>
+          <Form.Control type="email" ref={emailInputRef} required />
+        </Form.Group>
+        <Form.Group>
+          <Form.Label>Your Password</Form.Label>
+          <Form.Control type="password" ref={passwordInputRef} required />
+        </Form.Group>
         {isLoading ? (
-          <p>Loading...</p>
+          <Button variant="primary" disabled>
+            <Spinner animation="border" size="sm" /> Loading...
+          </Button>
         ) : (
-          <button type="submit">Login</button>
+          <Button type="submit" variant="primary">
+            Login
+          </Button>
         )}
-      </form>
+      </Form>
     </section>
   );
 };

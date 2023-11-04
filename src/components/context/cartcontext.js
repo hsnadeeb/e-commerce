@@ -37,6 +37,15 @@ const cartReducer = (state, action) => {
         };
       }
 
+      case 'REMOVE_FROM_CART':
+        const updatedCart = state.cart.filter(
+          (product) => product._id !== action.payload._id
+        );
+        return {
+          ...state,
+          cart: updatedCart,
+        };
+
       case 'SET_CART':
         return {
     ...state,
@@ -50,7 +59,7 @@ const cartReducer = (state, action) => {
 
 export const CartProvider = ({ children, isLoggedIn }) => {
   const cleanMail = 'hasantestcom';
-    const apiUrl = `https://crudcrud.com/api/f8774e76b3564be7b6831ef84f891086/newCart${cleanMail}`;
+    const apiUrl = `https://crudcrud.com/api/e616e777b9294108bdeea53d5f0fc506/testCart${cleanMail}`;
   const [cartState, cartDispatch] = useReducer(cartReducer, { cart: [] });
 
   useEffect(() => {
@@ -60,7 +69,8 @@ export const CartProvider = ({ children, isLoggedIn }) => {
         const response = await axios.get(apiUrl); 
         console.log(response);
         
-        const cartItems = response.data.map(({ _id, ...item }) => item); 
+        // const cartItems = response.data.map(({ _id, ...item }) => item); 
+        const cartItems = response.data.map((item) => item); 
         console.log(cartItems);
         cartDispatch({ type: 'SET_CART', payload: cartItems });
       } catch (error) {

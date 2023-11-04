@@ -1,10 +1,24 @@
 import React from 'react';
 import { Button, Badge, Container, Row, Col } from 'react-bootstrap';
 import { useCart } from '../context/cartcontext';
+import axios from 'axios';
 
 const Cart = ({ onCloseCart }) => {
-  // , isLoggedIn
-  const { cartState, isLoggedIn } = useCart();
+  const { cartState, cartDispatch, isLoggedIn } = useCart();
+  
+  const cleanMail='hasantestcom';
+
+  const removeFromCart = async (item) => {
+    const apiUrl = `https://crudcrud.com/api/e616e777b9294108bdeea53d5f0fc506/testCart${cleanMail}`;
+    try {
+      
+      await axios.delete(`${apiUrl}/${item._id}`);
+      
+      cartDispatch({ type: 'REMOVE_FROM_CART', payload: item });
+    } catch (error) {
+      console.error('Error removing item from cart:', error);
+    }
+  };
 
   return (
     <div className="cart-modal">
@@ -23,8 +37,12 @@ const Cart = ({ onCloseCart }) => {
                     <p>{item.title}</p>
                     <p>Price: ${item.price}</p>
                     <p>Quantity: {item.quantity}</p>
+                    <Button variant="danger" onClick={() => removeFromCart(item)}>
+                  Remove
+                </Button>
                   </div>
                 </li>
+                
               ))}
             </ul>
           ) : (
